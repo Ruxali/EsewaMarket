@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.EsewaMarket" parent="android:Theme.Material.Light.NoActionBar">
 
-    <style name="Theme.EsewaMarket" parent="android:Theme.Material.Light.NoActionBar" />
+        //For Radius in different size of components
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.EsewaMarket.SmallComponent.</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.EsewaMarket.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.EsewaMarket.LargeComponent</item>
+
+        //For fonts used in the components
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.EsewaMarket.SubTitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.EsewaMarket.SubTitle2</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.EsewaMarket.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.EsewaMarket.Headline6</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.EsewaMarket.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.EsewaMarket.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.EsewaMarket.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.EsewaMarket.Overline</item>
+
+    </style>
+
+
 </resources>

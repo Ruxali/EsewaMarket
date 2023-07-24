@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">EsewaMarket</string>
+    <string name="market">Market</string>
+    <string name="good_morning">Good Morning! Everything you will discover here</string>
+    <string name="search">What are you Searching for?</string>
+    <string name="categories">Categories</string>
+    <string name="mobile">Mobile</string>
+    <string name="electronic_device">Electronic Device</string>
+    <string name="fashions">Fashions</string>
+    <string name="groceries">Groceries</string>
+    <string name="featured_products">Featured Products</string>
+    <string name="sold">Sold</string>
+    <string name="hot_deals">Hot Deals of the Day</string>
+    <string name="popular_brand">Popular Brand</string>
+    <string name="recommended">Recommended for You</string>
+    <string name="loading">Loading</string>
+    <string name="shop">Shop</string>
+    <string name="description">Description</string>
+    <string name="view_more">View More</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="my_cart">My Cart</string>
+    <string name="items">Items</string>
+    <string name="checkout">Checkout</string>
+    <string name="checkout_total">Checkout Total</string>
+    <string name="delete_from_cart">Delete from cart</string>
+    <string name="are_you_sure">Are you sure you want to delete item(s)?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+
 </resources>

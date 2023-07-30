@@ -3,7 +3,7 @@
     <style name="Theme.EsewaMarket" parent="android:Theme.Material.Light.NoActionBar">
 
         //For Radius in different size of components
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.EsewaMarket.SmallComponent.</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.EsewaMarket.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.EsewaMarket.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.EsewaMarket.LargeComponent</item>
 
@@ -16,6 +16,21 @@
         <item name="textAppearanceBody2">@style/TextAppearance.EsewaMarket.Body2</item>
         <item name="textAppearanceButton">@style/TextAppearance.EsewaMarket.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.EsewaMarket.Overline</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.EsewaMarket.Caption</item>
+
+        //For colors
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+
 
     </style>
 

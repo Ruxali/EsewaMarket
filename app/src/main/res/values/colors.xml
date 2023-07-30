@@ -13,7 +13,7 @@
     <color name="colorOnSecondary">#2ABB00</color>
 
     //Additional Colors
-    <color name="colorBackground">#F9FBFE</color>
+    <color name="colorBackground">#E9EAF1</color>
     <color name="colorOnBackground">#000000</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorOnSurface">#000000</color>

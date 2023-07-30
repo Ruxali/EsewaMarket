@@ -29,5 +29,6 @@
     <string name="notification">Notification</string>
     <string name="more_options">More Options</string>
     <string name="home_and_appliances">Home and Appliances</string>
+    <string name="rs">Rs.</string>
 
 </resources>

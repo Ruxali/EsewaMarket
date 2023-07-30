@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.EsewaMarket" parent="android:Theme.Material.Light.NoActionBar">
+    <style name="Theme.EsewaMarket" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         //For Radius in different size of components
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.EsewaMarket.SmallComponent</item>

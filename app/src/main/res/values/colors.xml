@@ -15,6 +15,7 @@
     //Additional Colors
     <color name="colorBackground">#E9EAF1</color>
     <color name="colorOnBackground">#000000</color>
+    <color name="colorBackgroundLight">#F8F8FA</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorOnSurface">#000000</color>
     <color name="colorError">#F44336</color>

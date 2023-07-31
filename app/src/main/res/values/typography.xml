@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //For Heading 5
+    <style name="TextAppearance.EsewaMarket.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    //For Heading 6
+    <style name="TextAppearance.EsewaMarket.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    //For Subtitle 1
+    <style name="TextAppearance.EsewaMarket.SubTitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/semi_bold</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    //For Subtitle 2
+    <style name="TextAppearance.EsewaMarket.SubTitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    //For Body 1
+    <style name="TextAppearance.EsewaMarket.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    //For Body 2
+    <style name="TextAppearance.EsewaMarket.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    //For Button
+    <style name="TextAppearance.EsewaMarket.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    //For Overline
+    <style name="TextAppearance.EsewaMarket.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    //For Caption
+    <style name="TextAppearance.EsewaMarket.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+</resources>

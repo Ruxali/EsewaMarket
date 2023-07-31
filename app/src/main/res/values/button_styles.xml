@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.EsewaMarket.AddToCartButton" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/ShapeAppearance.EsewaMarket.AddToCartButton</item>
+    </style>
+
+</resources>

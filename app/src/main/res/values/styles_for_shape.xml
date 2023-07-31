@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //For small components
+    <style name="ShapeAppearance.EsewaMarket.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    //For medium components
+    <style name="ShapeAppearance.EsewaMarket.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    //For large components
+    <style name="ShapeAppearance.EsewaMarket.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    //For Add to Cart Button in Shop Activity
+    <style name="ShapeAppearance.EsewaMarket.AddToCartButton" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    //For delete from Cart in Cart Activity
+    <style name="ShapeAppearance.EsewaMarket.DeleteFromCartButton" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="color">@color/colorPrimary</item>
+    </style>
+
+    //For Increase item in Cart
+    <style name="ShapeAppearance.EsewaMarket.IncreaseInCartButton" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    //For Decrease item in Cart
+    <style name="ShapeAppearance.EsewaMarket.DecreaseInCartButton" parent="">
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    //For Sold in Cart
+    <style name="ShapeAppearance.EsewaMarket.Sold" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    //For Top Nav
+    <style name="ShapeAppearance.EsewaMarket.TopNav" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomLeft">50dp</item>
+        <item name="cornerSizeBottomRight">50dp</item>
+    </style>
+
+    //For Bottom of product
+    <style name="ShapeAppearance.EsewaMarket.ProductBottom" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+    </style>
+
+    //For discount tag
+    <style name="ShapeAppearance.EsewaMarket.DiscountTag" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+        <item name="color">@color/colorSecondary</item>
+    </style>
+
+</resources>

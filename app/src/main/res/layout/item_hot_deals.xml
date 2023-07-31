@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="178dp"
+    android:layout_height="278dp"
+    android:layout_marginHorizontal="14dp"
+    app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.LargeComponent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundLight"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/productImage"
+                android:layout_width="152dp"
+                android:layout_height="146dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="8dp"
+                android:background="@drawable/rounded_rectangle_for_products_item"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tshirt" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="56dp"
+                android:layout_height="24dp"
+                android:backgroundTint="@color/colorSecondary"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="100dp"
+                app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.DiscountTag">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_15_off"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:textAppearance="@style/TextAppearance.EsewaMarket.Caption"
+                    android:textColor="@color/colorPrimary"/>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorOnPrimary"
+            app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.ProductBottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/productName"
+                    android:layout_width="123dp"
+                    android:layout_height="20dp"
+                    android:layout_marginVertical="2dp"
+                    android:layout_marginStart="8dp"
+                    android:text="T-Shirt"
+                    android:textAppearance="@style/TextAppearance.EsewaMarket.Body2"
+                    android:textColor="@color/text_dark_400" />
+
+                <TextView
+                    android:id="@+id/productCategory"
+                    android:layout_width="123dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:text="in stock - 99shop"
+                    android:textAppearance="@style/TextAppearance.EsewaMarket.Overline"
+                    android:textColor="@color/text_dark_200" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rs"
+                        android:textAppearance="@style/TextAppearance.EsewaMarket.Caption"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/productPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="840"
+                        android:textAppearance="@style/TextAppearance.EsewaMarket.SubTitle1"
+                        android:textColor="@color/colorPrimary" />
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/favoriteButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/ic_fav"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/cardView"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/cardView"
+                        style="@style/Widget.EsewaMarket.AddToCartButton"
+                        android:layout_width="42dp"
+                        android:layout_height="wrap_content"
+                        app:icon="@drawable/ic_plus"
+                        android:insetBottom="0dp"
+                        android:insetTop="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/favoriteButton"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

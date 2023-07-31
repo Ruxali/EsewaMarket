@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:contentPadding="8dp"
+    app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.SmallComponent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_rectangle_for_categories_item"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:src="@drawable/ic_shop_mobile" />
+
+        <TextView
+            android:id="@+id/categoriesName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="@string/mobile"
+            android:textAppearance="@style/TextAppearance.EsewaMarket.Caption"
+            android:textColor="@color/colorOnSurface" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+

@@ -22,4 +22,8 @@ interface ApiService {
     //For Popular Brands
     @GET("products/category/jewelery")
     fun getPopularBrand(@Query("limit") limit: String) : Call<ArrayList<ProductsItem>>
+
+    //For Popular Brands
+    @GET("products")
+    fun getAllProducts(@Query("limit") limit: String) : Call<ArrayList<ProductsItem>>
 }

@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.esewamarket.adapters.AllProductsAdadpter
 import com.example.esewamarket.adapters.CategoriesAdapter
 import com.example.esewamarket.adapters.FeaturedProductsAdapter
 import com.example.esewamarket.adapters.HotDealsAdapter
 import com.example.esewamarket.adapters.PopularBrandAdapter
 import com.example.esewamarket.databinding.ActivityMainBinding
+import com.example.esewamarket.viewModels.AllProductsViewModel
 import com.example.esewamarket.viewModels.CategoriesViewModel
 import com.example.esewamarket.viewModels.FeaturedProductsViewModel
 import com.example.esewamarket.viewModels.HotDealsViewModel
@@ -32,6 +34,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var popularBrandViewModel: PopularBrandViewModel
     private lateinit var popularBrandAdapter : PopularBrandAdapter
+
+    private lateinit var allProductsViewModel: AllProductsViewModel
+    private lateinit var allProductsAdapter : AllProductsAdadpter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +82,25 @@ class MainActivity : AppCompatActivity() {
             popularBrandAdapter.setPopularBrandList(popularBrandList)
         })
 
+        //for all products
+        prepareAllProductsRecyclerView()
+
+        allProductsViewModel = ViewModelProvider(this)[AllProductsViewModel::class.java]
+        allProductsViewModel.getAllProducts()
+        allProductsViewModel.observeAllProductsLiveData().observe(this, Observer { allProductsList ->
+            allProductsAdapter.setAllProductsList(allProductsList)
+        })
+
+    }
+
+    private fun prepareAllProductsRecyclerView() {
+        allProductsAdapter = AllProductsAdadpter()
+        binding.allProductsSection.rvAllProducts.apply {
+            layoutManager = GridLayoutManager(this@MainActivity, 2)
+            adapter = allProductsAdapter
+            addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
+            addItemDecoration(VerticalSpaceItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
+        }
     }
 
     private fun preparePopularBrandRecyclerView() {

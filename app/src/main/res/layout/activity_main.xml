@@ -44,6 +44,9 @@
                 android:id="@+id/popularBrandSection"
                 layout="@layout/activity_popular_brand"/>
 
+            <include
+                android:id="@+id/allProductsSection"
+                layout="@layout/activity_all_products"/>
         </LinearLayout>
     </ScrollView>
 

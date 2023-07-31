@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.esewamarket"
-        minSdk 21
+        minSdk 23
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -85,6 +85,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01'
 
-    //picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+
 }

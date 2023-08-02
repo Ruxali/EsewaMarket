@@ -4,14 +4,17 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.esewamarket.api.ApiService
+import com.example.esewamarket.api.RepoClass
 import com.example.esewamarket.api.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class CategoriesViewModel: ViewModel() {
     private var categoriesLiveData= MutableLiveData<List<String>>()
     private var retrofitInstance = RetrofitInstance
+
 
     fun getCategories(){
         retrofitInstance.apiInterface.getCategories().enqueue(object  :

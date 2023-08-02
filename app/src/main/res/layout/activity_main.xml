@@ -21,8 +21,10 @@
             <include
                 android:id="@+id/topAppBar"
                 layout="@layout/activity_top_nav_integrated" />
+
             <include
-                layout="@layout/activity_banner_slideshow"/>
+                android:id="@+id/bannerSection"
+                layout="@layout/activity_banner_slideshow" />
 
             <include
                 android:id="@+id/categorySection"
@@ -47,8 +49,17 @@
             <include
                 android:id="@+id/allProductsSection"
                 layout="@layout/activity_all_products"/>
+
+            <include
+                android:id="@+id/loadView"
+                layout="@layout/activity_load"/>
+
+
         </LinearLayout>
     </ScrollView>
+
+    <include
+        layout="@layout/activity_floating_button"/>
 
     <include
         android:id="@+id/bottomNavBar"

@@ -6,28 +6,30 @@
         android:id="@+id/shop"
         android:icon="@drawable/ic_shop_main"
         android:title="@string/shop"
-        app:cnb_iconColor="@color/colorPrimary"/>
+        android:enabled="true"
+        app:cnb_iconColor="@color/colorPrimary"
+        app:cnb_backgroundColor="@color/colorSecondary"/>
 
     <item
         android:id="@+id/cart"
         android:icon="@drawable/ic_cart"
         android:title="@string/cart"
-        app:showAsAction="always"
-        app:cnb_iconColor="@color/colorPrimary"/>
+        app:cnb_iconColor="@color/colorPrimary"
+        app:cnb_backgroundColor="@color/colorSecondary"/>
 
 
     <item
         android:id="@+id/favorites"
         android:icon="@drawable/ic_fav_main"
         android:title="@string/favorites"
-        app:showAsAction="ifRoom"
-        app:cnb_iconColor="@color/colorPrimary"/>
+        app:cnb_iconColor="@color/colorPrimary"
+        app:cnb_backgroundColor="@color/colorSecondary"/>
 
     <item
         android:id="@+id/more"
         android:icon="@drawable/ic_horizontal_ellipses"
         android:title="@string/more_options"
-        app:showAsAction="ifRoom"
-        app:cnb_iconColor="@color/colorPrimary"/>
+        app:cnb_iconColor="@color/colorPrimary"
+        app:cnb_backgroundColor="@color/colorSecondary"/>
 
 </menu>

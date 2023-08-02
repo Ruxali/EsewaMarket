@@ -1,24 +1,31 @@
 package com.example.esewamarket
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.esewamarket.adapters.AllProductsAdadpter
+import com.example.esewamarket.adapters.BannerAdapter
 import com.example.esewamarket.adapters.CategoriesAdapter
 import com.example.esewamarket.adapters.FeaturedProductsAdapter
 import com.example.esewamarket.adapters.HotDealsAdapter
 import com.example.esewamarket.adapters.PopularBrandAdapter
 import com.example.esewamarket.databinding.ActivityMainBinding
+import com.example.esewamarket.models.Banner
 import com.example.esewamarket.viewModels.AllProductsViewModel
 import com.example.esewamarket.viewModels.CategoriesViewModel
 import com.example.esewamarket.viewModels.FeaturedProductsViewModel
 import com.example.esewamarket.viewModels.HotDealsViewModel
 import com.example.esewamarket.viewModels.PopularBrandViewModel
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +45,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var allProductsViewModel: AllProductsViewModel
     private lateinit var allProductsAdapter : AllProductsAdadpter
 
+    private lateinit var bannerAdapter : BannerAdapter
+
+
+    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -90,6 +101,26 @@ class MainActivity : AppCompatActivity() {
         allProductsViewModel.observeAllProductsLiveData().observe(this, Observer { allProductsList ->
             allProductsAdapter.setAllProductsList(allProductsList)
         })
+
+        //recycler view of image banner
+        val sharedPreferencesLoad = getSharedPreferences("sharedPreferences", MODE_PRIVATE)
+        val gsonLoad = Gson()
+        val jsonLoad: String? = sharedPreferencesLoad.getString("bannerListData",null)
+        val type = object : TypeToken<ArrayList<Banner>>() {}.type
+
+       val  bannerList = gsonLoad.fromJson<ArrayList<Banner>>(jsonLoad,type)
+            bannerAdapter = BannerAdapter()
+            binding.bannerSection.rvBanner.apply {
+                layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL,false)
+                adapter = bannerAdapter
+            }
+        bannerAdapter.setBannerList(bannerList)
+
+        //for bottom nav
+        binding.bottomNavBar.bottomNavigation.setItemSelected(R.id.shop)
+
+        //for loadin gif
+        Glide.with(this).load(R.drawable.load).into(binding.loadView.webView)
 
     }
 

@@ -13,16 +13,17 @@ class BottomNavigationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBottomNavigationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.bottomNavigation.setItemSelected(R.id.shop)
 
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when(it) {
-                R.id.shop -> {
-                    binding.bottomNavigation.showBadge(R.id.cart)
-                }
-                R.id.cart -> {
-                    binding.bottomNavigation.showBadge(R.id.shop)
-                }
-            }
-        }
+//        binding.bottomNavigation.setOnItemSelectedListener {
+//            when(it) {
+//                R.id.shop -> {
+//                    binding.bottomNavigation.showBadge(R.id.cart)
+//                }
+//                R.id.cart -> {
+//                    binding.bottomNavigation.showBadge(R.id.shop)
+//                }
+//            }
+//        }
     }
 }

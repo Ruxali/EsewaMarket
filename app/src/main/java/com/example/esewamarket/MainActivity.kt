@@ -2,6 +2,7 @@ package com.example.esewamarket
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -16,8 +17,12 @@ import com.example.esewamarket.adapters.CategoriesAdapter
 import com.example.esewamarket.adapters.FeaturedProductsAdapter
 import com.example.esewamarket.adapters.HotDealsAdapter
 import com.example.esewamarket.adapters.PopularBrandAdapter
+import com.example.esewamarket.api.ApiService
+import com.example.esewamarket.api.RetrofitInstance
 import com.example.esewamarket.databinding.ActivityMainBinding
 import com.example.esewamarket.models.Banner
+import com.example.esewamarket.repository.CategoriesRepository
+import com.example.esewamarket.viewModelFactory.CategoriesViewModelFactory
 import com.example.esewamarket.viewModels.AllProductsViewModel
 import com.example.esewamarket.viewModels.CategoriesViewModel
 import com.example.esewamarket.viewModels.FeaturedProductsViewModel
@@ -30,6 +35,11 @@ import com.google.gson.reflect.TypeToken
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+
+    private val apiService = RetrofitInstance.apiInterface
+
+
+    //for categories
     private lateinit var categoriesViewModel: CategoriesViewModel
     private lateinit var categoriesAdapter : CategoriesAdapter
 
@@ -58,11 +68,10 @@ class MainActivity : AppCompatActivity() {
         //for categories
         prepareCategoriesRecyclerView()
 
-        categoriesViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
-        categoriesViewModel.getCategories()
-        categoriesViewModel.observecategoriesLiveData().observe(this, Observer { categoriesList ->
+        val categoriesRepository = CategoriesRepository(apiService)
+        categoriesViewModel = ViewModelProvider(this, CategoriesViewModelFactory(categoriesRepository)).get(CategoriesViewModel::class.java)
+        categoriesViewModel.categories.observe(this, {categoriesList ->
             categoriesAdapter.setCategoriesList(categoriesList)
-
         })
 
         //for featured products

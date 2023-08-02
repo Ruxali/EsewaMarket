@@ -91,4 +91,7 @@ dependencies {
     //for image slider in banner
     implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
+    //for logging interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
+
 }

@@ -14,34 +14,15 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class CategoriesViewModel(val categoryRepository: CategoriesRepository): ViewModel() {
+class CategoriesViewModel(private val categoryRepository: CategoriesRepository): ViewModel() {
+
+    val categoriesLiveData by lazy { MutableLiveData<List<String>>() }
+
 
     init {
-        viewModelScope.launch(Dispatchers.IO ){
-            categoryRepository.getCategories()
+        viewModelScope.launch(Dispatchers.IO) {
+            categoriesLiveData.postValue(categoryRepository.getCategories())
         }
     }
-
-    val categories: LiveData<List<String>>
-        get() = categoryRepository.categories
-//    fun getCategories(){
-//        retrofitInstance.apiInterface.getCategories().enqueue(object  :
-//            Callback<List<String>> {
-//            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
-//                if (response.body() != null){
-//                    categoriesLiveData.value = response.body()
-//                }
-//                else{
-//                    return
-//                }
-//            }
-//            override fun onFailure(call: Call<List<String>>, t: Throwable) {
-//                Log.d("TAG",t.message.toString())
-//            }
-//        })
-//    }
-//    fun observecategoriesLiveData() : MutableLiveData<List<String>> {
-//        return categoriesLiveData
-//    }
 
 }

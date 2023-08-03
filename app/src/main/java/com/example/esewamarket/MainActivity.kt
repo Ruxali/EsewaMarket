@@ -21,8 +21,16 @@ import com.example.esewamarket.api.ApiService
 import com.example.esewamarket.api.RetrofitInstance
 import com.example.esewamarket.databinding.ActivityMainBinding
 import com.example.esewamarket.models.Banner
+import com.example.esewamarket.repository.AllProductsRepository
 import com.example.esewamarket.repository.CategoriesRepository
+import com.example.esewamarket.repository.FeaturedProductsRepository
+import com.example.esewamarket.repository.HotDealsRepository
+import com.example.esewamarket.repository.PopularBrandsRepository
+import com.example.esewamarket.viewModelFactory.AllProductsViewModelFactory
 import com.example.esewamarket.viewModelFactory.CategoriesViewModelFactory
+import com.example.esewamarket.viewModelFactory.FeaturedProductsViewModelFactory
+import com.example.esewamarket.viewModelFactory.HotDealsViewModelFactory
+import com.example.esewamarket.viewModelFactory.PopularBrandViewModelFactory
 import com.example.esewamarket.viewModels.AllProductsViewModel
 import com.example.esewamarket.viewModels.CategoriesViewModel
 import com.example.esewamarket.viewModels.FeaturedProductsViewModel
@@ -67,49 +75,44 @@ class MainActivity : AppCompatActivity() {
 
         //for categories
         prepareCategoriesRecyclerView()
-
         val categoriesRepository = CategoriesRepository(apiService)
         categoriesViewModel = ViewModelProvider(this, CategoriesViewModelFactory(categoriesRepository)).get(CategoriesViewModel::class.java)
-        categoriesViewModel.categories.observe(this, {categoriesList ->
+        categoriesViewModel.categoriesLiveData.observe(this) { categoriesList ->
             categoriesAdapter.setCategoriesList(categoriesList)
-        })
+        }
 
         //for featured products
-        prepareHotDealsRecyclerView()
-
-        hotDealsViewModel = ViewModelProvider(this)[HotDealsViewModel::class.java]
-        hotDealsViewModel.getHotDeals()
-        hotDealsViewModel.observeHotDealsLiveData().observe(this, Observer { hotDealsList ->
-            hotDealsAdapter.setHotDealsList(hotDealsList)
-
-        })
+        prepareFeaturedProductsRecyclerView()
+        val featuredProductsRepository = FeaturedProductsRepository(apiService)
+        featuredProductsViewModel = ViewModelProvider(this, FeaturedProductsViewModelFactory(featuredProductsRepository)).get(FeaturedProductsViewModel::class.java)
+        featuredProductsViewModel.featuredProductsLiveData.observe(this) { featuredProductsList ->
+            featuredProductsAdapter.setFeaturedProductsList(featuredProductsList)
+        }
 
         //for hot deals
-        prepareFeaturedProductsRecyclerView()
-
-        featuredProductsViewModel = ViewModelProvider(this)[FeaturedProductsViewModel::class.java]
-        featuredProductsViewModel.getFeaturedProducts()
-        featuredProductsViewModel.observeFeaturedProductsLiveData().observe(this, Observer { featuredProductsList ->
-            featuredProductsAdapter.setFeaturedProductsList(featuredProductsList)
-        })
+        prepareHotDealsRecyclerView()
+        val hotDealsRepository = HotDealsRepository(apiService)
+        hotDealsViewModel = ViewModelProvider(this, HotDealsViewModelFactory(hotDealsRepository)).get(HotDealsViewModel::class.java)
+        hotDealsViewModel.hotDealsLiveData.observe(this) { hotDealsList ->
+            hotDealsAdapter.setHotDealsList(hotDealsList)
+        }
 
         //for popular brand
         preparePopularBrandRecyclerView()
+        val popularBrandsRepository = PopularBrandsRepository(apiService)
+        popularBrandViewModel = ViewModelProvider(this, PopularBrandViewModelFactory(popularBrandsRepository)).get(PopularBrandViewModel::class.java)
+        popularBrandViewModel.popularBrandsLiveData.observe(this) { popularBrandsList ->
+            popularBrandAdapter.setPopularBrandList(popularBrandsList)
+        }
 
-        popularBrandViewModel = ViewModelProvider(this)[PopularBrandViewModel::class.java]
-        popularBrandViewModel.getPopularBrand()
-        popularBrandViewModel.observePopularBrandLiveData().observe(this, Observer { popularBrandList ->
-            popularBrandAdapter.setPopularBrandList(popularBrandList)
-        })
 
         //for all products
         prepareAllProductsRecyclerView()
-
-        allProductsViewModel = ViewModelProvider(this)[AllProductsViewModel::class.java]
-        allProductsViewModel.getAllProducts()
-        allProductsViewModel.observeAllProductsLiveData().observe(this, Observer { allProductsList ->
+        val allProductsRepository = AllProductsRepository(apiService)
+        allProductsViewModel = ViewModelProvider(this, AllProductsViewModelFactory(allProductsRepository)).get(AllProductsViewModel::class.java)
+        allProductsViewModel.allProductsLiveData.observe(this) { allProductsList ->
             allProductsAdapter.setAllProductsList(allProductsList)
-        })
+        }
 
         //recycler view of image banner
         val sharedPreferencesLoad = getSharedPreferences("sharedPreferences", MODE_PRIVATE)

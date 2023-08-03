@@ -14,17 +14,17 @@ interface ApiService {
 
     //For Featured Products
     @GET("products")
-    fun getFeaturedProducts(@Query("limit") limit: String) : Call<ArrayList<ProductsItem>>
+    suspend fun getFeaturedProducts(@Query("limit") limit: String) :Response<ArrayList<ProductsItem>>
 
     //For Hot Deals Products
     @GET("products")
-    fun getHotDeals(@Query("limit") limit: String, @Query("sort") sort: String) : Call<ArrayList<ProductsItem>>
+    suspend fun getHotDeals(@Query("limit") limit: String, @Query("sort") sort: String) : Response<ArrayList<ProductsItem>>
 
     //For Popular Brands
     @GET("products/category/jewelery")
-    fun getPopularBrand(@Query("limit") limit: String) : Call<ArrayList<ProductsItem>>
+    suspend fun getPopularBrand(@Query("limit") limit: String) : Response<ArrayList<ProductsItem>>
 
-    //For Popular Brands
+    //For All Products
     @GET("products")
-    fun getAllProducts(@Query("limit") limit: String) : Call<ArrayList<ProductsItem>>
+    suspend fun getAllProducts(@Query("limit") limit: String) : Response<ArrayList<ProductsItem>>
 }

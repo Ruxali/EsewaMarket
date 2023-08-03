@@ -3,37 +3,26 @@ package com.example.esewamarket.viewModels
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.esewamarket.api.RetrofitInstance
 import com.example.esewamarket.models.ProductsItem
+import com.example.esewamarket.repository.FeaturedProductsRepository
+import com.example.esewamarket.repository.HotDealsRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HotDealsViewModel : ViewModel() {
-    private var hotDealsLiveData = MutableLiveData<ArrayList<ProductsItem>>()
-    private var retrofitInstance = RetrofitInstance
+class HotDealsViewModel (private val hotDealsRepository: HotDealsRepository): ViewModel() {
 
-    fun getHotDeals(){
-        retrofitInstance.apiInterface.getHotDeals("2","desc").enqueue(object :
-            Callback<ArrayList<ProductsItem>> {
-            override fun onResponse(
-                call: Call<ArrayList<ProductsItem>>,
-                response: Response<ArrayList<ProductsItem>>
-            ) {
-                if (response.body() != null){
-                    hotDealsLiveData.value = response.body()
-                }
-                else{
-                    return
-                }
+    val hotDealsLiveData by lazy { MutableLiveData<ArrayList<ProductsItem>>() }
 
-            }
-            override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
-                Log.d("TAG",t.message.toString())
-            }
-        })
-    }
-    fun observeHotDealsLiveData() : MutableLiveData<ArrayList<ProductsItem>> {
-        return hotDealsLiveData
+
+    init {
+        viewModelScope.launch(Dispatchers.IO ){
+            hotDealsLiveData.postValue(hotDealsRepository.getHotDeals("2","desc"))
+
+        }
     }
 }

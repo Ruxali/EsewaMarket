@@ -23,7 +23,7 @@
     <string name="checkout">Checkout</string>
     <string name="checkout_total">Checkout Total</string>
     <string name="delete_from_cart">Delete from cart</string>
-    <string name="are_you_sure">Are you sure you want to delete item(s)?</string>
+    <string name="are_you_sure">Are you sure you want to delete \n item(s)?</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
     <string name="notification">Notification</string>

@@ -17,6 +17,9 @@
         android:theme="@style/Theme.EsewaMarket"
         tools:targetApi="31">
         <activity
+            android:name=".ProductsDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
@@ -24,7 +27,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustNothing" />
         <activity
-            android:name=".ProductsDetailActivity"
+            android:name=".CartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

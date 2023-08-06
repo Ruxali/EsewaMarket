@@ -11,6 +11,9 @@ import com.example.esewamarket.models.ProductsItem
 
 class HotDealsAdapter : RecyclerView.Adapter<HotDealsAdapter.ViewHolder>(){
     private var hotDealsList = arrayListOf<ProductsItem>()
+    var onProductItemClick : ((ProductsItem) -> Unit)? = null
+
+
     @SuppressLint("NotifyDataSetChanged")
     fun setHotDealsList(hotDealsList: ArrayList<ProductsItem>) {
         this.hotDealsList = hotDealsList
@@ -41,6 +44,10 @@ class HotDealsAdapter : RecyclerView.Adapter<HotDealsAdapter.ViewHolder>(){
         holder.binding.productName.text = hotDealsList[position].title
         holder.binding.productCategory.text = hotDealsList[position].category
         holder.binding.productPrice.text = hotDealsList[position].price.toString()
+
+        holder.itemView.setOnClickListener{
+            onProductItemClick?.invoke(hotDealsList[position])
+        }
 
     }
 }

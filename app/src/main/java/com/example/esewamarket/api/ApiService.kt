@@ -17,7 +17,7 @@ interface ApiService {
     suspend fun getFeaturedProducts(@Query("limit") limit: String) :Response<ArrayList<ProductsItem>>
 
     //For Hot Deals Products
-    @GET("products")
+    @GET("products/category/electronics")
     suspend fun getHotDeals(@Query("limit") limit: String, @Query("sort") sort: String) : Response<ArrayList<ProductsItem>>
 
     //For Popular Brands

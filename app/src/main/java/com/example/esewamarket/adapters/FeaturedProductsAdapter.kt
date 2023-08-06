@@ -11,6 +11,9 @@ import com.example.esewamarket.models.ProductsItem
 class FeaturedProductsAdapter: RecyclerView.Adapter<FeaturedProductsAdapter.ViewHolder>() {
 
     private var featuredProductsList = arrayListOf<ProductsItem>()
+
+    var onProductItemClick : ((ProductsItem) -> Unit)? = null
+
     @SuppressLint("NotifyDataSetChanged")
     fun setFeaturedProductsList(featuredProductsList: ArrayList<ProductsItem>) {
         this.featuredProductsList = featuredProductsList
@@ -41,6 +44,11 @@ class FeaturedProductsAdapter: RecyclerView.Adapter<FeaturedProductsAdapter.View
         holder.binding.productName.text = featuredProductsList[position].title
         holder.binding.productCategory.text = featuredProductsList[position].category
         holder.binding.productPrice.text = featuredProductsList[position].price.toString()
+
+
+        holder.itemView.setOnClickListener{
+            onProductItemClick?.invoke(featuredProductsList[position])
+        }
 
     }
 }

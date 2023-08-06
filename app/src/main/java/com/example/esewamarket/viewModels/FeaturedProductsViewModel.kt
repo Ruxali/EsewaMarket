@@ -14,11 +14,9 @@ class FeaturedProductsViewModel(private val featuredProductsRepository: Featured
 
     val featuredProductsLiveData by lazy { MutableLiveData<ArrayList<ProductsItem>>() }
 
-
     init {
         viewModelScope.launch(Dispatchers.IO ){
             featuredProductsLiveData.postValue(featuredProductsRepository.getFeaturedProducts("2"))
-
         }
     }
 

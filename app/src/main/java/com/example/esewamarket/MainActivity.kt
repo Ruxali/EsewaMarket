@@ -1,6 +1,8 @@
 package com.example.esewamarket
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.webkit.WebViewClient
@@ -21,6 +23,7 @@ import com.example.esewamarket.api.ApiService
 import com.example.esewamarket.api.RetrofitInstance
 import com.example.esewamarket.databinding.ActivityMainBinding
 import com.example.esewamarket.models.Banner
+import com.example.esewamarket.models.ProductsItem
 import com.example.esewamarket.repository.AllProductsRepository
 import com.example.esewamarket.repository.CategoriesRepository
 import com.example.esewamarket.repository.FeaturedProductsRepository
@@ -38,6 +41,7 @@ import com.example.esewamarket.viewModels.HotDealsViewModel
 import com.example.esewamarket.viewModels.PopularBrandViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 
 class MainActivity : AppCompatActivity() {
@@ -130,6 +134,20 @@ class MainActivity : AppCompatActivity() {
 
         //for bottom nav
         binding.bottomNavBar.bottomNavigation.setItemSelected(R.id.shop)
+        binding.bottomNavBar.bottomNavigation.setOnItemSelectedListener{
+            when(it){
+                R.id.cart ->{
+                    val intent = Intent(this@MainActivity, CartActivity::class.java)
+                    startActivity(intent)
+                }
+
+                R.id.shop ->{
+                    val intent = Intent(this@MainActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
+
+            }
+        }
 
         //for loadin gif
         Glide.with(this).load(R.drawable.load).into(binding.loadView.webView)
@@ -144,6 +162,12 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
             addItemDecoration(VerticalSpaceItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
         }
+        //to go to product details
+        allProductsAdapter.onProductItemClick = {
+            val intent = Intent(this@MainActivity, ProductsDetailActivity::class.java)
+            intent.putExtra("productItem",it)
+            startActivity(intent)
+        }
     }
 
     private fun preparePopularBrandRecyclerView() {
@@ -154,6 +178,12 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
             addItemDecoration(VerticalSpaceItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
         }
+        //to go to product details
+        popularBrandAdapter.onProductItemClick = {
+            val intent = Intent(this@MainActivity, ProductsDetailActivity::class.java)
+            intent.putExtra("productItem",it)
+            startActivity(intent)
+        }
     }
 
     private fun prepareHotDealsRecyclerView() {
@@ -162,6 +192,12 @@ class MainActivity : AppCompatActivity() {
             layoutManager = GridLayoutManager(this@MainActivity, 2)
             adapter = hotDealsAdapter
             addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
+        }
+        //to go to product details
+        hotDealsAdapter.onProductItemClick = {
+            val intent = Intent(this@MainActivity, ProductsDetailActivity::class.java)
+            intent.putExtra("productItem",it)
+            startActivity(intent)
         }
     }
 
@@ -172,7 +208,16 @@ class MainActivity : AppCompatActivity() {
             adapter = featuredProductsAdapter
             addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
         }
+
+        //to go to product details
+        featuredProductsAdapter.onProductItemClick = {
+            val intent = Intent(this@MainActivity, ProductsDetailActivity::class.java)
+            intent.putExtra("productItem",it)
+            startActivity(intent)
+        }
     }
+
+
 
     private fun prepareCategoriesRecyclerView() {
         categoriesAdapter = CategoriesAdapter()

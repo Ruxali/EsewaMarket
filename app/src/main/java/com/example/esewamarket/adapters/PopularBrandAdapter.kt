@@ -11,6 +11,9 @@ import com.example.esewamarket.models.ProductsItem
 class PopularBrandAdapter: RecyclerView.Adapter<PopularBrandAdapter.ViewHolder>() {
 
     private var popularBrandList = arrayListOf<ProductsItem>()
+    var onProductItemClick : ((ProductsItem) -> Unit)? = null
+
+
     @SuppressLint("NotifyDataSetChanged")
     fun setPopularBrandList(popularBrandList: ArrayList<ProductsItem>) {
         this.popularBrandList = popularBrandList
@@ -41,6 +44,10 @@ class PopularBrandAdapter: RecyclerView.Adapter<PopularBrandAdapter.ViewHolder>(
         holder.binding.productName.text = popularBrandList[position].title
         holder.binding.productCategory.text = popularBrandList[position].category
         holder.binding.productPrice.text = popularBrandList[position].price.toString()
+
+        holder.itemView.setOnClickListener{
+            onProductItemClick?.invoke(popularBrandList[position])
+        }
 
     }
 }

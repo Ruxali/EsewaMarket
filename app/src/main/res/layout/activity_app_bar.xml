@@ -22,7 +22,7 @@
             <ImageView
                 android:layout_width="93.6dp"
                 android:layout_height="24dp"
-                android:src="@drawable/esewa_logo"/>
+                android:src="@drawable/bmp_esewa_logo"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="45dp"

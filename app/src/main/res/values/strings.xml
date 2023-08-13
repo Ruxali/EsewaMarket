@@ -19,7 +19,7 @@
     <string name="view_more">View More</string>
     <string name="add_to_cart">Add To Cart</string>
     <string name="my_cart">My Cart</string>
-    <string name="items">Items</string>
+    <string name="items">Items: </string>
     <string name="checkout">Checkout</string>
     <string name="checkout_total">Checkout Total</string>
     <string name="delete_from_cart">Delete from cart</string>
@@ -33,5 +33,9 @@
     <string name="_15_off">15% OFF</string>
     <string name="cart">Cart</string>
     <string name="favorites">Favorites</string>
+    <string name="no_items_in_the_cart_yet">No Items in the Cart Yet</string>
+    <string name="add_your_products_to_cart">Add your products to cart and </string>
+    <string name="and_they_will_show_here">they will show here. </string>
+    <string name="continue_shopping">continue shopping</string>
 
 </resources>

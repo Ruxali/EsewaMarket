@@ -25,7 +25,7 @@ class MyApplication: Application() {
             val sharedPreferences = getSharedPreferences("sharedPreferences", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             val gson = Gson()
-            editor.putString("bannerListData",Gson().toJson(Banner.getDummyBanner()))
+            editor.putString("bannerListData",gson.toJson(Banner.getDummyBanner()))
             editor.apply()
 
         }

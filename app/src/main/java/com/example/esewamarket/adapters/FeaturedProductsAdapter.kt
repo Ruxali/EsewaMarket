@@ -3,10 +3,13 @@ package com.example.esewamarket.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.esewamarket.databinding.ItemProductsBinding
+import com.example.esewamarket.models.CartItems
 import com.example.esewamarket.models.ProductsItem
+import com.google.gson.reflect.TypeToken
 
 class FeaturedProductsAdapter: RecyclerView.Adapter<FeaturedProductsAdapter.ViewHolder>() {
 
@@ -49,6 +52,7 @@ class FeaturedProductsAdapter: RecyclerView.Adapter<FeaturedProductsAdapter.View
         holder.itemView.setOnClickListener{
             onProductItemClick?.invoke(featuredProductsList[position])
         }
+
 
     }
 }

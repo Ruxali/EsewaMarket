@@ -1,9 +1,9 @@
-package com.example.esewamarket
+package com.example.esewamarket.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.esewamarket.R
 import com.example.esewamarket.databinding.ActivityBottomNavigationBinding
-import com.google.android.material.navigation.NavigationBarView
 
 class BottomNavigationActivity : AppCompatActivity() {
 

@@ -6,7 +6,7 @@
     android:layout_height="278dp"
     android:layout_marginHorizontal="14dp"
     app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.LargeComponent"
-    tools:context=".MainActivity">
+    tools:context=".views.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:background="@drawable/rounded_rectangle_for_products_item"
             android:padding="8dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/tshirt" />
+            android:src="@drawable/bmp_tshirt" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -90,13 +90,13 @@
                         android:layout_marginBottom="4dp"
                         android:src="@drawable/ic_fav"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/cardView"
+                        app:layout_constraintEnd_toStartOf="@id/addToCartCardView"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/cardView"
+                        android:id="@+id/addToCartCardView"
                         style="@style/Widget.EsewaMarket.AddToCartButton"
                         android:layout_width="42dp"
                         android:layout_height="wrap_content"
@@ -106,7 +106,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/favoriteButton"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:onClick="addToCart"/>
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

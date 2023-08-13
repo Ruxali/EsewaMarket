@@ -21,7 +21,7 @@ class PopularBrandViewModel(private val popularBrandsRepository: PopularBrandsRe
 
     init {
         viewModelScope.launch(Dispatchers.IO ){
-            popularBrandsLiveData.postValue(popularBrandsRepository.getPopularBrands("2"))
+            popularBrandsLiveData.postValue(popularBrandsRepository.getPopularBrands("4"))
 
         }
     }

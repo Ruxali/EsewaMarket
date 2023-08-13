@@ -1,28 +1,32 @@
-package com.example.esewamarket
+package com.example.esewamarket.views
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-import android.webkit.WebViewClient
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
+import com.example.esewamarket.HorizontalSpacesItemDecoration
+import com.example.esewamarket.R
+import com.example.esewamarket.VerticalSpaceItemDecoration
 import com.example.esewamarket.adapters.AllProductsAdadpter
 import com.example.esewamarket.adapters.BannerAdapter
 import com.example.esewamarket.adapters.CategoriesAdapter
 import com.example.esewamarket.adapters.FeaturedProductsAdapter
 import com.example.esewamarket.adapters.HotDealsAdapter
 import com.example.esewamarket.adapters.PopularBrandAdapter
-import com.example.esewamarket.api.ApiService
 import com.example.esewamarket.api.RetrofitInstance
 import com.example.esewamarket.databinding.ActivityMainBinding
 import com.example.esewamarket.models.Banner
+import com.example.esewamarket.models.CartItems
 import com.example.esewamarket.models.ProductsItem
 import com.example.esewamarket.repository.AllProductsRepository
 import com.example.esewamarket.repository.CategoriesRepository
@@ -41,7 +45,6 @@ import com.example.esewamarket.viewModels.HotDealsViewModel
 import com.example.esewamarket.viewModels.PopularBrandViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
 
 
 class MainActivity : AppCompatActivity() {
@@ -129,6 +132,11 @@ class MainActivity : AppCompatActivity() {
             binding.bannerSection.rvBanner.apply {
                 layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL,false)
                 adapter = bannerAdapter
+                addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
+
+                //for snapping
+                val snapHelper: SnapHelper = LinearSnapHelper()
+                snapHelper.attachToRecyclerView(binding.bannerSection.rvBanner)
             }
         bannerAdapter.setBannerList(bannerList)
 
@@ -148,9 +156,10 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
-        //for loadin gif
+        //for loading gif
         Glide.with(this).load(R.drawable.load).into(binding.loadView.webView)
+
+
 
     }
 

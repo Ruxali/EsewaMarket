@@ -21,6 +21,7 @@
     <color name="colorError">#F44336</color>
     <color name="colorOnError">#000000</color>
     <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorRedButton">#FF7F6A</color>
 
 </resources>
 

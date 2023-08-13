@@ -21,7 +21,7 @@ class HotDealsViewModel (private val hotDealsRepository: HotDealsRepository): Vi
 
     init {
         viewModelScope.launch(Dispatchers.IO ){
-            hotDealsLiveData.postValue(hotDealsRepository.getHotDeals("2","desc"))
+            hotDealsLiveData.postValue(hotDealsRepository.getHotDeals("2"))
 
         }
     }

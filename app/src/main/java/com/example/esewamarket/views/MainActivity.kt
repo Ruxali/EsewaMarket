@@ -196,8 +196,28 @@ class MainActivity : AppCompatActivity() {
             val type = object : TypeToken<List<CartItems>>() {}.type
             val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
 
+                var isItemAlreadyPresent = false
+                for(item in cartListOutput){
 
-            cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+                    if(item.id == it.id){
+                        isItemAlreadyPresent = true
+                        //increase quantity and price
+                        item.quantity++
+
+                        item.changedPrice = item.price * item.quantity
+
+                        val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
+                        toast.show()
+                    }
+                    else{
+                        continue
+                    }
+
+                }
+                if (!isItemAlreadyPresent) {
+                    cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+
+                }
 
             val json: String = gson.toJson(cartListOutput)
             editor.putString("cartList",json)
@@ -234,8 +254,28 @@ class MainActivity : AppCompatActivity() {
             val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
 
 
-            cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+            var isItemAlreadyPresent = false
+            for(item in cartListOutput){
 
+                if(item.id == it.id){
+                    isItemAlreadyPresent = true
+                    //increase quantity and price
+                    item.quantity++
+
+                    item.changedPrice = item.price * item.quantity
+
+                    val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
+                    toast.show()
+                }
+                else{
+                    continue
+                }
+
+            }
+            if (!isItemAlreadyPresent) {
+                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+
+            }
             val json: String = gson.toJson(cartListOutput)
             editor.putString("cartList",json)
             editor.apply()
@@ -270,8 +310,28 @@ class MainActivity : AppCompatActivity() {
             val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
 
 
-            cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+            var isItemAlreadyPresent = false
+            for(item in cartListOutput){
 
+                if(item.id == it.id){
+                    isItemAlreadyPresent = true
+                    //increase quantity and price
+                    item.quantity++
+
+                    item.changedPrice = item.price * item.quantity
+
+                    val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
+                    toast.show()
+                }
+                else{
+                    continue
+                }
+
+            }
+            if (!isItemAlreadyPresent) {
+                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+
+            }
             val json: String = gson.toJson(cartListOutput)
             editor.putString("cartList",json)
             editor.apply()
@@ -307,8 +367,28 @@ class MainActivity : AppCompatActivity() {
             val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
 
 
-            cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+            var isItemAlreadyPresent = false
+            for(item in cartListOutput){
 
+                if(item.id == it.id){
+                    isItemAlreadyPresent = true
+                    //increase quantity and price
+                    item.quantity++
+
+                    item.changedPrice = item.price * item.quantity
+
+                    val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
+                    toast.show()
+                }
+                else{
+                    continue
+                }
+
+            }
+            if (!isItemAlreadyPresent) {
+                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+
+            }
             val json: String = gson.toJson(cartListOutput)
             editor.putString("cartList",json)
             editor.apply()

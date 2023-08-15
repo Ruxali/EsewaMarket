@@ -13,6 +13,7 @@ class HotDealsAdapter : RecyclerView.Adapter<HotDealsAdapter.ViewHolder>(){
     private var hotDealsList = arrayListOf<ProductsItem>()
     var onProductItemClick : ((ProductsItem) -> Unit)? = null
 
+    var onAddToCartClick : ((ProductsItem) -> Unit)?= null
 
     @SuppressLint("NotifyDataSetChanged")
     fun setHotDealsList(hotDealsList: ArrayList<ProductsItem>) {
@@ -20,7 +21,9 @@ class HotDealsAdapter : RecyclerView.Adapter<HotDealsAdapter.ViewHolder>(){
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val binding : ItemHotDealsBinding) : RecyclerView.ViewHolder(binding.root) {}
+    class ViewHolder(val binding : ItemHotDealsBinding) : RecyclerView.ViewHolder(binding.root) {
+        val addToCart = binding.addToCartCardView
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,5 +52,9 @@ class HotDealsAdapter : RecyclerView.Adapter<HotDealsAdapter.ViewHolder>(){
             onProductItemClick?.invoke(hotDealsList[position])
         }
 
+
+        holder.addToCart.setOnClickListener {
+            onAddToCartClick?.invoke(hotDealsList[position])
+        }
     }
 }

@@ -94,6 +94,7 @@ dependencies {
     //for logging interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
 
-    
+    //for expandable text view
+    implementation 'at.blogc:expandabletextview:1.0.5'
 
 }

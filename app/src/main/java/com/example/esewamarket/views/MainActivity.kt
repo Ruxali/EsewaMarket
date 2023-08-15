@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
+import com.example.esewamarket.CircleIndicatorForBanner
 import com.example.esewamarket.HorizontalSpacesItemDecoration
 import com.example.esewamarket.R
 import com.example.esewamarket.VerticalSpaceItemDecoration
@@ -43,6 +43,8 @@ import com.example.esewamarket.viewModels.CategoriesViewModel
 import com.example.esewamarket.viewModels.FeaturedProductsViewModel
 import com.example.esewamarket.viewModels.HotDealsViewModel
 import com.example.esewamarket.viewModels.PopularBrandViewModel
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
     private val apiService = RetrofitInstance.apiInterface
+
 
 
     //for categories
@@ -73,12 +76,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bannerAdapter : BannerAdapter
 
 
+
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
 
         //for categories
         prepareCategoriesRecyclerView()
@@ -133,6 +140,7 @@ class MainActivity : AppCompatActivity() {
                 layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL,false)
                 adapter = bannerAdapter
                 addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
+                addItemDecoration(CircleIndicatorForBanner())
 
                 //for snapping
                 val snapHelper: SnapHelper = LinearSnapHelper()
@@ -177,6 +185,27 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("productItem",it)
             startActivity(intent)
         }
+
+        //add to cart
+        allProductsAdapter.onAddToCartClick = {
+            val sharedPreferences = getSharedPreferences("shopping_cart", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            val gson = Gson()
+
+            val jsonLoad: String? = sharedPreferences.getString("cartList",null)
+            val type = object : TypeToken<List<CartItems>>() {}.type
+            val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
+
+
+            cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+
+            val json: String = gson.toJson(cartListOutput)
+            editor.putString("cartList",json)
+            editor.apply()
+
+            val toast = Toast.makeText(this@MainActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
+            toast.show()
+        }
     }
 
     private fun preparePopularBrandRecyclerView() {
@@ -193,6 +222,27 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("productItem",it)
             startActivity(intent)
         }
+
+        //add to cart
+        popularBrandAdapter.onAddToCartClick = {
+            val sharedPreferences = getSharedPreferences("shopping_cart", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            val gson = Gson()
+
+            val jsonLoad: String? = sharedPreferences.getString("cartList",null)
+            val type = object : TypeToken<List<CartItems>>() {}.type
+            val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
+
+
+            cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+
+            val json: String = gson.toJson(cartListOutput)
+            editor.putString("cartList",json)
+            editor.apply()
+
+            val toast = Toast.makeText(this@MainActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
+            toast.show()
+        }
     }
 
     private fun prepareHotDealsRecyclerView() {
@@ -207,6 +257,27 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, ProductsDetailActivity::class.java)
             intent.putExtra("productItem",it)
             startActivity(intent)
+        }
+
+        //add to cart
+        hotDealsAdapter.onAddToCartClick = {
+            val sharedPreferences = getSharedPreferences("shopping_cart", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            val gson = Gson()
+
+            val jsonLoad: String? = sharedPreferences.getString("cartList",null)
+            val type = object : TypeToken<List<CartItems>>() {}.type
+            val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
+
+
+            cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+
+            val json: String = gson.toJson(cartListOutput)
+            editor.putString("cartList",json)
+            editor.apply()
+
+            val toast = Toast.makeText(this@MainActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
+            toast.show()
         }
     }
 
@@ -224,6 +295,27 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("productItem",it)
             startActivity(intent)
         }
+
+        //add to cart
+        featuredProductsAdapter.onAddToCartClick = {
+            val sharedPreferences = getSharedPreferences("shopping_cart", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            val gson = Gson()
+
+            val jsonLoad: String? = sharedPreferences.getString("cartList",null)
+            val type = object : TypeToken<List<CartItems>>() {}.type
+            val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
+
+
+            cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+
+            val json: String = gson.toJson(cartListOutput)
+            editor.putString("cartList",json)
+            editor.apply()
+
+            val toast = Toast.makeText(this@MainActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
+            toast.show()
+        }
     }
 
 
@@ -236,5 +328,6 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
         }
     }
+
 
 }

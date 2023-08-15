@@ -3,13 +3,10 @@ package com.example.esewamarket.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.esewamarket.databinding.ItemProductsBinding
-import com.example.esewamarket.models.CartItems
 import com.example.esewamarket.models.ProductsItem
-import com.google.gson.reflect.TypeToken
 
 class FeaturedProductsAdapter: RecyclerView.Adapter<FeaturedProductsAdapter.ViewHolder>() {
 
@@ -17,13 +14,21 @@ class FeaturedProductsAdapter: RecyclerView.Adapter<FeaturedProductsAdapter.View
 
     var onProductItemClick : ((ProductsItem) -> Unit)? = null
 
+    var onAddToCartClick : ((ProductsItem) -> Unit)?= null
+
+
     @SuppressLint("NotifyDataSetChanged")
     fun setFeaturedProductsList(featuredProductsList: ArrayList<ProductsItem>) {
         this.featuredProductsList = featuredProductsList
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val binding : ItemProductsBinding) : RecyclerView.ViewHolder(binding.root) {}
+
+
+    class ViewHolder(val binding : ItemProductsBinding) : RecyclerView.ViewHolder(binding.root) {
+        val addToCart = binding.addToCartCardView
+    }
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -54,5 +59,8 @@ class FeaturedProductsAdapter: RecyclerView.Adapter<FeaturedProductsAdapter.View
         }
 
 
+        holder.addToCart.setOnClickListener {
+            onAddToCartClick?.invoke(featuredProductsList[position])
+        }
     }
 }

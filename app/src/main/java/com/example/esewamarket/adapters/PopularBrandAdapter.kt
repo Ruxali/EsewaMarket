@@ -13,6 +13,7 @@ class PopularBrandAdapter: RecyclerView.Adapter<PopularBrandAdapter.ViewHolder>(
     private var popularBrandList = arrayListOf<ProductsItem>()
     var onProductItemClick : ((ProductsItem) -> Unit)? = null
 
+    var onAddToCartClick : ((ProductsItem) -> Unit)?= null
 
     @SuppressLint("NotifyDataSetChanged")
     fun setPopularBrandList(popularBrandList: ArrayList<ProductsItem>) {
@@ -20,7 +21,9 @@ class PopularBrandAdapter: RecyclerView.Adapter<PopularBrandAdapter.ViewHolder>(
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val binding : ItemProductsBinding) : RecyclerView.ViewHolder(binding.root) {}
+    class ViewHolder(val binding : ItemProductsBinding) : RecyclerView.ViewHolder(binding.root) {
+        val addToCart = binding.addToCartCardView
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,5 +52,9 @@ class PopularBrandAdapter: RecyclerView.Adapter<PopularBrandAdapter.ViewHolder>(
             onProductItemClick?.invoke(popularBrandList[position])
         }
 
+
+        holder.addToCart.setOnClickListener {
+            onAddToCartClick?.invoke(popularBrandList[position])
+        }
     }
 }

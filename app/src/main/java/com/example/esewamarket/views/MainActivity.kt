@@ -215,7 +215,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 if (!isItemAlreadyPresent) {
-                    cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+                    cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
 
                 }
 
@@ -273,7 +273,7 @@ class MainActivity : AppCompatActivity() {
 
             }
             if (!isItemAlreadyPresent) {
-                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
 
             }
             val json: String = gson.toJson(cartListOutput)
@@ -329,7 +329,7 @@ class MainActivity : AppCompatActivity() {
 
             }
             if (!isItemAlreadyPresent) {
-                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
 
             }
             val json: String = gson.toJson(cartListOutput)
@@ -386,7 +386,7 @@ class MainActivity : AppCompatActivity() {
 
             }
             if (!isItemAlreadyPresent) {
-                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,it.title, 1))
+                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
 
             }
             val json: String = gson.toJson(cartListOutput)

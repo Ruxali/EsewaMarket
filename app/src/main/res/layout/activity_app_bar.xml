@@ -19,10 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/top_app_bar">
-            <ImageView
-                android:layout_width="93.6dp"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/bmp_esewa_logo"/>
+                android:src="@drawable/ic_esewa_logo_e"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="62dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_esewa_logo_sewa"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="45dp"

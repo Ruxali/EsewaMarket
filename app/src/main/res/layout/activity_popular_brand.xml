@@ -1,49 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="24dp"
-    android:orientation="vertical">
+    android:layout_marginTop="24dp">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="0dp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/popularBrandsTextView"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:text="@string/popular_brand"
+        android:paddingStart="16dp"
+        android:textAppearance="@style/TextAppearance.EsewaMarket.SubTitle1"
+        app:layout_constraintEnd_toStartOf="@id/arrowRightIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBackground"
-            android:paddingHorizontal="16dp">
-
-            <TextView
-                android:id="@+id/featuredProductsTextView"
-                android:layout_width="0dp"
-                android:layout_height="24dp"
-                android:text="@string/popular_brand"
-                android:textAppearance="@style/TextAppearance.EsewaMarket.SubTitle1"
-                app:layout_constraintEnd_toStartOf="@id/arrowRightIcon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <ImageView
-                android:id="@+id/arrowRightIcon"
-                android:layout_width="48dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_view_more_btn"
-                app:layout_constraintStart_toEndOf="@id/featuredProductsTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/arrowRightIcon"
+        android:layout_width="48dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_view_more_btn"
+        app:layout_constraintStart_toEndOf="@id/popularBrandsTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -56,8 +38,10 @@
         android:paddingStart="8dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/item_products"/>
+        tools:listitem="@layout/item_products"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/popularBrandsTextView"/>
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

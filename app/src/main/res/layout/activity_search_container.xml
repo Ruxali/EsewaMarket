@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="16dp"
             android:paddingVertical="12dp">
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/searchIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -24,10 +24,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatEditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/search"
+                android:hint="@string/search"
                 android:textAppearance="@style/TextAppearance.EsewaMarket.Body2"
                 android:textColor="@color/text_dark_300"
                 app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +35,7 @@
                 app:layout_constraintStart_toEndOf="@id/searchIcon"
                 app:layout_constraintEnd_toStartOf="@id/groupIcon"/>
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/groupIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"

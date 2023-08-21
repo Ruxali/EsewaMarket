@@ -15,7 +15,7 @@ class CircleIndicatorForBanner : RecyclerView.ItemDecoration() {
     private val colorActive = Color.parseColor("#2ABB00")
     private val colorInactive = Color.parseColor("#FFFFFF")
 
-    private val mIndicatorHeight = (DP * 32).toInt()
+    private val mIndicatorHeight = (DP * 30).toInt()
     /**
      * Indicator stroke width.
      */
@@ -23,14 +23,12 @@ class CircleIndicatorForBanner : RecyclerView.ItemDecoration() {
     /**
      * Indicator width.
      */
-    private val mIndicatorItemLength = DP * 2
+    private val mIndicatorItemLength = DP
     /**
      * Padding between indicators.
      */
-    private val mIndicatorItemPadding = DP * 12
-    /**
-     * Some more natural animation interpolation
-     */
+    private val mIndicatorItemPadding = DP * 10
+
     private val mInterpolator = AccelerateDecelerateInterpolator()
     private val mPaint = Paint()
     init {
@@ -45,7 +43,7 @@ class CircleIndicatorForBanner : RecyclerView.ItemDecoration() {
 
         // center horizontally, calculate width and subtract half from center
         val totalLength = mIndicatorItemLength * itemCount
-        val paddingBetweenItems = 0.coerceAtLeast(itemCount - 1) * mIndicatorItemPadding
+        val paddingBetweenItems = 0.coerceAtLeast(itemCount) * mIndicatorItemPadding
         val indicatorTotalWidth = totalLength + paddingBetweenItems
         val indicatorStartX = (parent.width - indicatorTotalWidth) / 2f
 
@@ -73,7 +71,7 @@ class CircleIndicatorForBanner : RecyclerView.ItemDecoration() {
         // width of item indicator including padding
         val itemWidth = mIndicatorItemLength + mIndicatorItemPadding
         var start = indicatorStartX
-        for (i in 0 until itemCount) {
+        for (i in 0 until itemCount ) {
             // draw the line for every item
             c.drawLine(start, indicatorPosY, start + mIndicatorItemLength, indicatorPosY, mPaint)
             start += itemWidth
@@ -98,12 +96,12 @@ class CircleIndicatorForBanner : RecyclerView.ItemDecoration() {
             // calculate partial highlight
             val partialLength = mIndicatorItemLength * progress
             // draw the cut off highlight
-            c.drawLine(
-                highlightStart + partialLength, indicatorPosY,
-                highlightStart + mIndicatorItemLength, indicatorPosY, mPaint
-            )
+//            c.drawLine(
+//                highlightStart + partialLength, indicatorPosY,
+//                highlightStart + mIndicatorItemLength, indicatorPosY, mPaint
+//            )
             // draw the highlight overlapping to the next item as well
-            if (highlightPosition < itemCount - 1) {
+            if (highlightPosition < itemCount -1) {
                 highlightStart += itemWidth
                 c.drawLine(
                     highlightStart, indicatorPosY,

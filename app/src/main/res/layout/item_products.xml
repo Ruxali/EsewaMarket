@@ -2,9 +2,10 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="178dp"
-    android:layout_height="278dp"
+    android:layout_width="188dp"
+    android:layout_height="288dp"
     android:layout_marginHorizontal="14dp"
+    app:cardElevation="-10dp"
     app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.LargeComponent"
     tools:context=".views.MainActivity">
 
@@ -14,7 +15,7 @@
         android:background="@color/colorBackgroundLight"
         android:orientation="vertical">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/productImage"
             android:layout_width="152dp"
             android:layout_height="146dp"
@@ -26,74 +27,74 @@
             android:scaleType="centerCrop"
             android:src="@drawable/bmp_tshirt" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorOnPrimary"
-            app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.ProductBottom">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:background="@color/colorOnPrimary"
+                app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.ProductBottom">
 
-                <TextView
+
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/productName"
-                    android:layout_width="123dp"
+                    android:layout_width="124dp"
                     android:layout_height="20dp"
                     android:layout_marginVertical="2dp"
                     android:layout_marginStart="8dp"
-                    android:text="T-Shirt"
+                    tools:text="T-Shirt"
                     android:textAppearance="@style/TextAppearance.EsewaMarket.Body2"
-                    android:textColor="@color/text_dark_400" />
+                    android:textColor="@color/text_dark_400"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/productCategory"/>
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/productCategory"
-                    android:layout_width="123dp"
+                    android:layout_width="124dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="8dp"
-                    android:text="in stock - 99shop"
+                    tools:text="in stock - 99shop"
                     android:textAppearance="@style/TextAppearance.EsewaMarket.Overline"
-                    android:textColor="@color/text_dark_200" />
+                    android:textColor="@color/text_dark_200"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/productName"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:orientation="horizontal">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/rs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rs"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/productCategory"
                         android:textAppearance="@style/TextAppearance.EsewaMarket.Caption"
                         android:textColor="@color/colorPrimary" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/productPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="840"
                         android:textAppearance="@style/TextAppearance.EsewaMarket.SubTitle1"
-                        android:textColor="@color/colorPrimary" />
-                </LinearLayout>
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintStart_toEndOf="@+id/rs"
+                        app:layout_constraintTop_toBottomOf="@id/productCategory"
+                        />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/favoriteButton"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginBottom="4dp"
+                       android:layout_marginVertical="14dp"
                         android:src="@drawable/ic_fav"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/addToCartCardView"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/rs"/>
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/addToCartCardView"
@@ -106,13 +107,10 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/favoriteButton"
-                        app:layout_constraintTop_toTopOf="parent"
                         />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
 
     </LinearLayout>

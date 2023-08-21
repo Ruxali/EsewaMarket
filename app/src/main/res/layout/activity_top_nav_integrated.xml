@@ -12,7 +12,7 @@
         android:id="@+id/topAppBar"
         layout="@layout/activity_app_bar" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/good_morning"

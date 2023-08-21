@@ -84,9 +84,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
         //for categories
         prepareCategoriesRecyclerView()
         val categoriesRepository = CategoriesRepository(apiService)
@@ -134,18 +131,18 @@ class MainActivity : AppCompatActivity() {
         val jsonLoad: String? = sharedPreferencesLoad.getString("bannerListData",null)
         val type = object : TypeToken<ArrayList<Banner>>() {}.type
 
-       val  bannerList = gsonLoad.fromJson<ArrayList<Banner>>(jsonLoad,type)
-            bannerAdapter = BannerAdapter()
-            binding.bannerSection.rvBanner.apply {
-                layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL,false)
-                adapter = bannerAdapter
-                addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
-                addItemDecoration(CircleIndicatorForBanner())
+        val  bannerList = gsonLoad.fromJson<ArrayList<Banner>>(jsonLoad,type)
+        bannerAdapter = BannerAdapter()
+        binding.bannerSection.rvBanner.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL,false)
+            adapter = bannerAdapter
+            addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
+            addItemDecoration(CircleIndicatorForBanner())
 
-                //for snapping
-                val snapHelper: SnapHelper = LinearSnapHelper()
-                snapHelper.attachToRecyclerView(binding.bannerSection.rvBanner)
-            }
+            //for snapping
+            val snapHelper: SnapHelper = LinearSnapHelper()
+            snapHelper.attachToRecyclerView(binding.bannerSection.rvBanner)
+        }
         bannerAdapter.setBannerList(bannerList)
 
         //for bottom nav
@@ -196,28 +193,28 @@ class MainActivity : AppCompatActivity() {
             val type = object : TypeToken<List<CartItems>>() {}.type
             val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
 
-                var isItemAlreadyPresent = false
-                for(item in cartListOutput){
+            var isItemAlreadyPresent = false
+            for(item in cartListOutput){
 
-                    if(item.id == it.id){
-                        isItemAlreadyPresent = true
-                        //increase quantity and price
-                        item.quantity++
+                if(item.id == it.id){
+                    isItemAlreadyPresent = true
+                    //increase quantity and price
+                    item.quantity++
 
-                        item.changedPrice = item.price * item.quantity
+                    item.changedPrice = item.price * item.quantity
 
-                        val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
-                        toast.show()
-                    }
-                    else{
-                        continue
-                    }
-
+                    val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
+                    toast.show()
                 }
-                if (!isItemAlreadyPresent) {
-                    cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
-
+                else{
+                    continue
                 }
+
+            }
+            if (!isItemAlreadyPresent) {
+                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
+
+            }
 
             val json: String = gson.toJson(cartListOutput)
             editor.putString("cartList",json)

@@ -9,13 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class FeaturedProductsViewModel(private val featuredProductsRepository: FeaturedProductsRepository): ViewModel() {
+class FeaturedProductsViewModel(private val productsRepository: FeaturedProductsRepository): ViewModel() {
 
     val featuredProductsLiveData by lazy { MutableLiveData<ArrayList<ProductsItem>>() }
 
     init {
         viewModelScope.launch(Dispatchers.IO ){
-            featuredProductsLiveData.postValue(featuredProductsRepository.getFeaturedProducts("2"))
+            featuredProductsLiveData.postValue(productsRepository.getFeaturedProducts("2"))
         }
     }
 

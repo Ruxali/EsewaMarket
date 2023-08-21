@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorOnPrimary"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/backBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="start"
+                android:src="@drawable/ic_view_less_small" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/my_cart"
+                android:textAppearance="@style/TextAppearance.EsewaMarket.Body1"
+                android:textColor="@color/text_dark_400" />
+
+            <FrameLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:layout_gravity="end"
+                android:padding="4dp"
+                android:layout_margin="8dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/colorBackgroundLight"
+                    app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.SmallComponent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/cartIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_cart" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/cartValue"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:text="1"
+                        android:gravity="center"
+                        android:textAppearance="@style/TextAppearance.EsewaMarket.Overline"
+                        android:textColor="@color/colorOnPrimary"
+                        android:background="@drawable/shape_for_badge"
+                        android:layout_gravity="top|end"/>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </FrameLayout>
+             </com.google.android.material.appbar.MaterialToolbar>
+
+    </androidx.appcompat.widget.Toolbar>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

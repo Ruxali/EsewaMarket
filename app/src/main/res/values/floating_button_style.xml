@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.App.ExtendedFloatingActionButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton.Icon">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearance.EsewaMarket.LargeComponent
+        </item>
+    </style>
+
+</resources>

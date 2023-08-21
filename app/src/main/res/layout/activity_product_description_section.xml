@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="60dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorOnPrimary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/productName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Jacket In Nylon"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/text_dark_400"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textAppearance="@style/TextAppearance.EsewaMarket.Headline6"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/productCategory"
+            android:layout_width="123dp"
+            android:layout_height="20dp"
+            tools:text="in stock - 99shop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productName"
+            android:textAppearance="@style/TextAppearance.EsewaMarket.Overline"
+            android:textColor="@color/text_dark_200" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textColor="@color/text_dark_400"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/productCategory"
+            android:textAppearance="@style/TextAppearance.EsewaMarket.Headline5"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/productPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2500.00"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/text_dark_400"
+            app:layout_constraintStart_toEndOf="@+id/rs"
+            app:layout_constraintTop_toBottomOf="@id/productCategory"
+            android:textAppearance="@style/TextAppearance.EsewaMarket.Headline5"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/productDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs.500.00"
+            android:background="@drawable/strike_through_shape"
+            android:layout_gravity="center"
+            android:textColor="@color/text_dark_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rs"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAppearance="@style/TextAppearance.EsewaMarket.Headline6"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:dividerColor="@color/colorPrimaryVariant"
+            android:layout_marginVertical="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/productDiscount"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/descTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_dark_300"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider1"
+            android:textAppearance="@style/TextAppearance.EsewaMarket.SubTitle1"/>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tick"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descTitle"
+            android:src="@drawable/teenyicons_tick_circle_solid"/>
+
+            <at.blogc.android.views.ExpandableTextView
+                android:id="@+id/productDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Created for Marcy's"
+                android:maxLines="4"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                app:animation_duration="750"
+                android:paddingStart="8dp"
+                android:paddingEnd="12dp"
+                android:textColor="@color/text_dark_300"
+                app:layout_constraintStart_toEndOf="@+id/tick"
+                app:layout_constraintTop_toBottomOf="@+id/descTitle"
+                android:textAppearance="@style/TextAppearance.EsewaMarket.Body2"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/viewMoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorSecondary"
+            android:text="@string/view_more"
+            android:textColor="@color/colorPrimary"
+            app:shapeAppearance="@style/ShapeAppearance.EsewaMarket.SmallComponent"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/productDescription"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:dividerColor="@color/colorPrimaryVariant"
+            android:layout_marginVertical="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewMoreButton"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

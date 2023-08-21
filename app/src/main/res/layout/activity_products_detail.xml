@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.ProductsDetailActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewProduct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <include
+                android:id="@+id/productDescriptionImage"
+                layout="@layout/activity_product_image"/>
+
+            <include
+                android:id="@+id/productDescription"
+                layout="@layout/activity_product_description_section"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/productBottomNav"
+        layout="@layout/activity_product_bottom_nav"/>
+
+</FrameLayout>

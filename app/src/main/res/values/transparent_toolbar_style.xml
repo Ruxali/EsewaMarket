@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.EsewaMarket.TransparentToolbar" parent="Theme.EsewaMarket">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="colorPrimary">#00FFFFFF</item>
+    </style>
+</resources>

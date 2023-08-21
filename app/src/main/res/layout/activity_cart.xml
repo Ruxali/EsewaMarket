@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.CartActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <include
+                android:id="@+id/cartTopNav"
+                layout="@layout/activity_cart_top_nav"/>
+
+
+            <include
+                android:id="@+id/cartItem"
+                layout="@layout/activity_cart_items"/>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+<include
+    android:id="@+id/cartBottomNav"
+    layout="@layout/activity_cart_bottom_nav"/>
+
+
+</FrameLayout>

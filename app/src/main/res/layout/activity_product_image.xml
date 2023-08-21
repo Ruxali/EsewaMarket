@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/productImage"
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        android:src="@drawable/bmp_tshirt"
+        android:layout_gravity="center"/>
+
+    <include
+        android:id="@+id/productToolbar"
+        layout="@layout/activity_product_top_nav"/>
+
+</FrameLayout>

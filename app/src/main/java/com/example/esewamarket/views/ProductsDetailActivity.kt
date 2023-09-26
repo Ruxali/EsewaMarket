@@ -1,27 +1,27 @@
 package com.example.esewamarket.views
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.view.animation.OvershootInterpolator
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.esewamarket.adapters.CartItemAdapter
 import com.example.esewamarket.databinding.ActivityProductsDetailBinding
-import com.example.esewamarket.models.CartItems
 import com.example.esewamarket.models.ProductsItem
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.example.esewamarket.repository.CartRepository
+import com.example.esewamarket.viewModels.CartViewModel
+import com.example.esewamarket.viewModelFactory.CartViewModelFactory
+import com.example.esewamarket.viewModelFactory.ProductDetailsViewModelFactory
+import com.example.esewamarket.viewModels.ProductDetailsViewModel
 
 
 class ProductsDetailActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityProductsDetailBinding
+    private lateinit var productDetailsViewModel: ProductDetailsViewModel
 
     @SuppressLint("CommitPrefEdits", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,17 +45,10 @@ class ProductsDetailActivity : AppCompatActivity() {
             binding.productDescription.productPrice.text = products.price.toString()
             binding.productDescription.productDescription.text = products.description
             binding.productDescription.productCategory.text = products.category
+            binding.productDescription.productId.text = products.id.toString()
 
             //for view more in description
             binding.productDescription.productDescription.setInterpolator(OvershootInterpolator())
-
-//            val lineCount = binding.productDescription.productDescription.lineCount
-//
-//            if(lineCount < 4){
-//                binding.productDescription.viewMoreButton.visibility = View.GONE
-//            }else{
-//                binding.productDescription.viewMoreButton.visibility = View.VISIBLE
-//            }
 
             binding.productDescription.viewMoreButton.setOnClickListener {
                 if (binding.productDescription.productDescription.isExpanded)
@@ -76,54 +69,32 @@ class ProductsDetailActivity : AppCompatActivity() {
         }
 
         //for add to cart
-        val sharedPreferences= getSharedPreferences("shopping_cart", MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        val gson = Gson()
+        val sharedPreferences= getSharedPreferences("shopping_cart", MODE_PRIVATE).edit()
+        val cartRepository = CartRepository(this)
+        val productDetailsViewModelFactory = ProductDetailsViewModelFactory(cartRepository)
+        productDetailsViewModel = ViewModelProvider(this, productDetailsViewModelFactory).get(ProductDetailsViewModel::class.java)
 
         binding.productBottomNav.addToCartBtn.setOnClickListener {
-             val jsonLoad: String? = sharedPreferences.getString("cartList",null)
-             val type = object : TypeToken<List<CartItems>>() {}.type
-             val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
 
-            if (products != null) {
-                var isItemAlreadyPresent = false
-                for(item in cartListOutput){
-
-                    if(item.id == products.id){
-                        isItemAlreadyPresent = true
-                        //increase quantity and price
-                        item.quantity++
-
-                        item.changedPrice = item.price * item.quantity
-
-                        val toast = Toast.makeText(this@ProductsDetailActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
-                        toast.show()
-                    }
-                    else{
-                        continue
-                    }
-
-                }
-                if (!isItemAlreadyPresent) {
-                    cartListOutput.add(CartItems(products.category,products.id,products.image,products.price,products.price,0.0,products.title, 1))
-                }
+            // Create a Product instance for the product you want to add
+            val productToAdd = products?.let { it1 -> ProductsItem(it1.category,it1.description,it1.id,it1.image,it1.price,it1.title) }
+            // Add the product to the cart using the ViewModel
+            if (productToAdd != null) {
+                productDetailsViewModel.addToCart(productToAdd)
             }
-            val json: String = gson.toJson(cartListOutput)
-            editor.putString("cartList",json)
-            editor.apply()
 
-
-            val toast = Toast.makeText(this@ProductsDetailActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
-            toast.show()
-
-
+            goToCartPage()
          }
 
         //intent to cart
         binding.productDescriptionImage.productToolbar.cartIcon.setOnClickListener {
-            val intent = Intent(this@ProductsDetailActivity, CartActivity::class.java)
-            startActivity(intent)
+            goToCartPage()
         }
+    }
+
+    private fun goToCartPage() {
+        val intent = Intent(this@ProductsDetailActivity, CartActivity::class.java)
+        startActivity(intent)
     }
 
     @Deprecated("Deprecated in Java")
@@ -132,5 +103,7 @@ class ProductsDetailActivity : AppCompatActivity() {
         val intent = Intent(this@ProductsDetailActivity, MainActivity::class.java)
         startActivity(intent)
     }
+
+
 
 }

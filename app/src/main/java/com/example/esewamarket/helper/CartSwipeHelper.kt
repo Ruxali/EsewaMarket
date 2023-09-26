@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_SWIPE
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.esewamarket.adapters.CartItemAdapter
 
 internal enum class ButtonsState {
     GONE, RIGHT_VISIBLE
@@ -175,7 +176,7 @@ class CartSwipeHelper: ItemTouchHelper.Callback() {
                     )
                 ) {
                     if (buttonShowedState == ButtonsState.RIGHT_VISIBLE) {
-                        buttonsActions!!.onRightClicked(viewHolder.adapterPosition)
+                        buttonsActions!!.onRightClicked((viewHolder as CartItemAdapter.ViewHolder).binding.productId.text.toString().toInt())
                     }
                     swipeBack = true
                     buttonShowedState = ButtonsState.GONE

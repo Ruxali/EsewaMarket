@@ -87,27 +87,30 @@ class CircleIndicatorForBanner : RecyclerView.ItemDecoration() {
         if (progress == 0f) {
             // no swipe, draw a normal indicator
             val highlightStart = indicatorStartX + itemWidth * highlightPosition
+            val partialLength = mIndicatorItemLength * progress
+
             c.drawLine(
-                highlightStart, indicatorPosY,
+                highlightStart+ partialLength, indicatorPosY,
                 highlightStart + mIndicatorItemLength, indicatorPosY, mPaint
             )
-        } else {
-            var highlightStart = indicatorStartX + itemWidth * highlightPosition
+        }
+        else {
+            val highlightStart = indicatorStartX + itemWidth * highlightPosition
             // calculate partial highlight
             val partialLength = mIndicatorItemLength * progress
             // draw the cut off highlight
-//            c.drawLine(
-//                highlightStart + partialLength, indicatorPosY,
-//                highlightStart + mIndicatorItemLength, indicatorPosY, mPaint
-//            )
+            c.drawLine(
+                highlightStart , indicatorPosY,
+                highlightStart + mIndicatorItemLength + partialLength, indicatorPosY, mPaint
+            )
             // draw the highlight overlapping to the next item as well
-            if (highlightPosition < itemCount -1) {
-                highlightStart += itemWidth
-                c.drawLine(
-                    highlightStart, indicatorPosY,
-                    highlightStart + partialLength, indicatorPosY, mPaint
-                )
-            }
+//            if (highlightPosition < itemCount ) {
+//                highlightStart += itemWidth
+//                c.drawLine(
+//                    highlightStart, indicatorPosY,
+//                    highlightStart + partialLength, indicatorPosY, mPaint
+//                )
+//            }
         }
     }
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {

@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.esewamarket.databinding.ItemHotDealsBinding
-import com.example.esewamarket.databinding.ItemProductsBinding
 import com.example.esewamarket.models.ProductsItem
 
 class HotDealsAdapter : RecyclerView.Adapter<HotDealsAdapter.ViewHolder>(){

@@ -12,11 +12,9 @@ class AllProductsViewModel (private val allProductsRepository: AllProductsReposi
 
     val allProductsLiveData by lazy { MutableLiveData<ArrayList<ProductsItem>>() }
 
-
     init {
         viewModelScope.launch(Dispatchers.IO ){
             allProductsLiveData.postValue(allProductsRepository.getAllProducts("8", "desc"))
-
         }
     }
 

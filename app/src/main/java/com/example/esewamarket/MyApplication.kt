@@ -2,6 +2,7 @@ package com.example.esewamarket
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import com.example.esewamarket.models.Banner
 import com.google.gson.Gson
 
@@ -12,6 +13,7 @@ class MyApplication: Application() {
                 @get:Synchronized
                 lateinit var initializer: MyApplication
                         private set
+
         }
 
         @SuppressLint("CommitPrefEdits")

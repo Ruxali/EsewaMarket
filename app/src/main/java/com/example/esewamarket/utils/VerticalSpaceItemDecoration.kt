@@ -1,4 +1,4 @@
-package com.example.esewamarket
+package com.example.esewamarket.utils
 
 import android.graphics.Rect
 import android.view.View

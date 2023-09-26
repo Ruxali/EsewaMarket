@@ -2,7 +2,6 @@ package com.example.esewamarket.views
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.example.esewamarket.CircleIndicatorForBanner
-import com.example.esewamarket.HorizontalSpacesItemDecoration
+import com.example.esewamarket.utils.HorizontalSpacesItemDecoration
 import com.example.esewamarket.R
-import com.example.esewamarket.VerticalSpaceItemDecoration
+import com.example.esewamarket.utils.VerticalSpaceItemDecoration
 import com.example.esewamarket.adapters.AllProductsAdadpter
 import com.example.esewamarket.adapters.BannerAdapter
 import com.example.esewamarket.adapters.CategoriesAdapter
@@ -25,11 +24,12 @@ import com.example.esewamarket.adapters.HotDealsAdapter
 import com.example.esewamarket.adapters.PopularBrandAdapter
 import com.example.esewamarket.api.RetrofitInstance
 import com.example.esewamarket.databinding.ActivityMainBinding
+import com.example.esewamarket.repository.AllProductsRepository
+import com.example.esewamarket.repository.CategoriesRepository
 import com.example.esewamarket.models.Banner
 import com.example.esewamarket.models.CartItems
 import com.example.esewamarket.models.ProductsItem
-import com.example.esewamarket.repository.AllProductsRepository
-import com.example.esewamarket.repository.CategoriesRepository
+import com.example.esewamarket.repository.CartRepository
 import com.example.esewamarket.repository.FeaturedProductsRepository
 import com.example.esewamarket.repository.HotDealsRepository
 import com.example.esewamarket.repository.PopularBrandsRepository
@@ -38,13 +38,13 @@ import com.example.esewamarket.viewModelFactory.CategoriesViewModelFactory
 import com.example.esewamarket.viewModelFactory.FeaturedProductsViewModelFactory
 import com.example.esewamarket.viewModelFactory.HotDealsViewModelFactory
 import com.example.esewamarket.viewModelFactory.PopularBrandViewModelFactory
+import com.example.esewamarket.viewModelFactory.ProductDetailsViewModelFactory
 import com.example.esewamarket.viewModels.AllProductsViewModel
 import com.example.esewamarket.viewModels.CategoriesViewModel
 import com.example.esewamarket.viewModels.FeaturedProductsViewModel
 import com.example.esewamarket.viewModels.HotDealsViewModel
 import com.example.esewamarket.viewModels.PopularBrandViewModel
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
+import com.example.esewamarket.viewModels.ProductDetailsViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var bannerAdapter : BannerAdapter
 
-
+    private lateinit var productDetailsViewModel: ProductDetailsViewModel
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -185,45 +185,20 @@ class MainActivity : AppCompatActivity() {
 
         //add to cart
         allProductsAdapter.onAddToCartClick = {
-            val sharedPreferences = getSharedPreferences("shopping_cart", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            val gson = Gson()
+            val cartRepository = CartRepository(this)
+            val productDetailsViewModelFactory = ProductDetailsViewModelFactory(cartRepository)
+            productDetailsViewModel = ViewModelProvider(this, productDetailsViewModelFactory).get(ProductDetailsViewModel::class.java)
 
-            val jsonLoad: String? = sharedPreferences.getString("cartList",null)
-            val type = object : TypeToken<List<CartItems>>() {}.type
-            val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
+            // Create a Product instance for the product you want to add
+            val productToAdd = ProductsItem(it.category,it.description,it.id,it.image,it.price,it.title)
+            // Add the product to the cart using the ViewModel
+            productDetailsViewModel.addToCart(productToAdd)
 
-            var isItemAlreadyPresent = false
-            for(item in cartListOutput){
-
-                if(item.id == it.id){
-                    isItemAlreadyPresent = true
-                    //increase quantity and price
-                    item.quantity++
-
-                    item.changedPrice = item.price * item.quantity
-
-                    val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
-                    toast.show()
-                }
-                else{
-                    continue
-                }
-
-            }
-            if (!isItemAlreadyPresent) {
-                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
-
-            }
-
-            val json: String = gson.toJson(cartListOutput)
-            editor.putString("cartList",json)
-            editor.apply()
-
-            val toast = Toast.makeText(this@MainActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
-            toast.show()
+            goToCartPage()
         }
     }
+
+
 
     private fun preparePopularBrandRecyclerView() {
         popularBrandAdapter = PopularBrandAdapter()
@@ -242,43 +217,16 @@ class MainActivity : AppCompatActivity() {
 
         //add to cart
         popularBrandAdapter.onAddToCartClick = {
-            val sharedPreferences = getSharedPreferences("shopping_cart", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            val gson = Gson()
+             val cartRepository = CartRepository(this)
+            val productDetailsViewModelFactory = ProductDetailsViewModelFactory(cartRepository)
+            productDetailsViewModel = ViewModelProvider(this, productDetailsViewModelFactory).get(ProductDetailsViewModel::class.java)
 
-            val jsonLoad: String? = sharedPreferences.getString("cartList",null)
-            val type = object : TypeToken<List<CartItems>>() {}.type
-            val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
+            // Create a Product instance for the product you want to add
+            val productToAdd = ProductsItem(it.category,it.description,it.id,it.image,it.price,it.title)
+            // Add the product to the cart using the ViewModel
+            productDetailsViewModel.addToCart(productToAdd)
 
-
-            var isItemAlreadyPresent = false
-            for(item in cartListOutput){
-
-                if(item.id == it.id){
-                    isItemAlreadyPresent = true
-                    //increase quantity and price
-                    item.quantity++
-
-                    item.changedPrice = item.price * item.quantity
-
-                    val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
-                    toast.show()
-                }
-                else{
-                    continue
-                }
-
-            }
-            if (!isItemAlreadyPresent) {
-                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
-
-            }
-            val json: String = gson.toJson(cartListOutput)
-            editor.putString("cartList",json)
-            editor.apply()
-
-            val toast = Toast.makeText(this@MainActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
-            toast.show()
+            goToCartPage()
         }
     }
 
@@ -298,43 +246,16 @@ class MainActivity : AppCompatActivity() {
 
         //add to cart
         hotDealsAdapter.onAddToCartClick = {
-            val sharedPreferences = getSharedPreferences("shopping_cart", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            val gson = Gson()
+             val cartRepository = CartRepository(this)
+            val productDetailsViewModelFactory = ProductDetailsViewModelFactory(cartRepository)
+            productDetailsViewModel = ViewModelProvider(this, productDetailsViewModelFactory).get(ProductDetailsViewModel::class.java)
 
-            val jsonLoad: String? = sharedPreferences.getString("cartList",null)
-            val type = object : TypeToken<List<CartItems>>() {}.type
-            val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
+            // Create a Product instance for the product you want to add
+            val productToAdd = ProductsItem(it.category,it.description,it.id,it.image,it.price,it.title)
+            // Add the product to the cart using the ViewModel
+            productDetailsViewModel.addToCart(productToAdd)
 
-
-            var isItemAlreadyPresent = false
-            for(item in cartListOutput){
-
-                if(item.id == it.id){
-                    isItemAlreadyPresent = true
-                    //increase quantity and price
-                    item.quantity++
-
-                    item.changedPrice = item.price * item.quantity
-
-                    val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
-                    toast.show()
-                }
-                else{
-                    continue
-                }
-
-            }
-            if (!isItemAlreadyPresent) {
-                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
-
-            }
-            val json: String = gson.toJson(cartListOutput)
-            editor.putString("cartList",json)
-            editor.apply()
-
-            val toast = Toast.makeText(this@MainActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
-            toast.show()
+            goToCartPage()
         }
     }
 
@@ -355,47 +276,23 @@ class MainActivity : AppCompatActivity() {
 
         //add to cart
         featuredProductsAdapter.onAddToCartClick = {
-            val sharedPreferences = getSharedPreferences("shopping_cart", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            val gson = Gson()
+             val cartRepository = CartRepository(this)
+            val productDetailsViewModelFactory = ProductDetailsViewModelFactory(cartRepository)
+            productDetailsViewModel = ViewModelProvider(this, productDetailsViewModelFactory).get(ProductDetailsViewModel::class.java)
 
-            val jsonLoad: String? = sharedPreferences.getString("cartList",null)
-            val type = object : TypeToken<List<CartItems>>() {}.type
-            val cartListOutput = gson.fromJson<MutableList<CartItems>>(jsonLoad,type)?: mutableListOf()
+            // Create a Product instance for the product you want to add
+            val productToAdd = ProductsItem(it.category,it.description,it.id,it.image,it.price,it.title)
+            // Add the product to the cart using the ViewModel
+            productDetailsViewModel.addToCart(productToAdd)
 
-
-            var isItemAlreadyPresent = false
-            for(item in cartListOutput){
-
-                if(item.id == it.id){
-                    isItemAlreadyPresent = true
-                    //increase quantity and price
-                    item.quantity++
-
-                    item.changedPrice = item.price * item.quantity
-
-                    val toast = Toast.makeText(this@MainActivity, "Already in the Cart, Quantity Increased", Toast.LENGTH_LONG)
-                    toast.show()
-                }
-                else{
-                    continue
-                }
-
-            }
-            if (!isItemAlreadyPresent) {
-                cartListOutput.add(CartItems(it.category,it.id,it.image,it.price,it.price,0.0,it.title, 1))
-
-            }
-            val json: String = gson.toJson(cartListOutput)
-            editor.putString("cartList",json)
-            editor.apply()
-
-            val toast = Toast.makeText(this@MainActivity, "Successfully added to the Cart", Toast.LENGTH_LONG)
-            toast.show()
+            goToCartPage()
         }
     }
 
-
+    private fun goToCartPage() {
+        val intent = Intent(this@MainActivity, CartActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun prepareCategoriesRecyclerView() {
         categoriesAdapter = CategoriesAdapter()
@@ -405,6 +302,5 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(HorizontalSpacesItemDecoration(resources.getDimensionPixelSize(R.dimen.space)))
         }
     }
-
 
 }

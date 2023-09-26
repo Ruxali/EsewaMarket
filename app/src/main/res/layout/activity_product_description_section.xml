@@ -25,6 +25,18 @@
             android:textAppearance="@style/TextAppearance.EsewaMarket.Headline6"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/productId"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Jacket In Nylon"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/text_dark_400"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textAppearance="@style/TextAppearance.EsewaMarket.Headline6"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/productCategory"
             android:layout_width="123dp"
             android:layout_height="20dp"
